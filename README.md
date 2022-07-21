@@ -32,7 +32,8 @@ Use the sample code and documentation guide to learn the basics of how to displa
 
 
 ### Part 1: Implementing the RecyclerView:
-1. Create the XML Layout that will display the dog breed information (name and photo)
+1. Create a new XML Layout called *dog_breed_row* that will display the dog breed information (name
+   and photo)
 2. Implement the Adapter to display the Dog's information:
   ```kotlin
       class DogsListAdapter(private val dataSet: List<Breed>) :
@@ -56,10 +57,10 @@ Use the sample code and documentation guide to learn the basics of how to displa
           // Create new views (invoked by the layout manager)
           override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
               // Create a new view, which defines the UI of the list item
-              val view = LayoutInflater.from(viewGroup.context)
-                  .inflate(R.layout.dog_row_view, viewGroup, false)
+             val view = LayoutInflater.from(viewGroup.context)
+                .inflate(R.layout.dog_breed_row, viewGroup, false)
 
-              return ViewHolder(view)
+             return ViewHolder(view)
           }
 
           // Replace the contents of a view (invoked by the layout manager)
@@ -80,7 +81,8 @@ Use the sample code and documentation guide to learn the basics of how to displa
 
       }
   ```
-3. Create new Fragment called *DogsListFragment* with the following layout structure:
+
+3. Modify the layout *fragment_dog_list* with the following layout structure:
    ````xml
    <?xml version="1.0" encoding="utf-8"?>
       <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -97,23 +99,9 @@ Use the sample code and documentation guide to learn the basics of how to displa
 
       </androidx.constraintlayout.widget.ConstraintLayout>
    ````
-4. Implement a ViewModel to inyect your services and add it to the *DogsListFragment*
-    ````kotlin
-      class DogsListFragment : Fragment() {
 
-          val viewModel: DogsListFragmentViewModel by activityViewModels()
-      
-      }
-      
-      @HiltViewModel
-      class DogsListFragmentViewModel
-      @Inject constructor(
-          private val breedDao: BreedDao,
-          private val dogsImageService: DogsImageService
-      ) : ViewModel() {
-          
-    ````
-5. Implement the following function inside the *DogListFragment* to configure the *RecyclerView* and connect it with the LiveData Obervable that returns the dogs list:
+4. Implement the following function inside the *DogListFragment* to configure the *RecyclerView* and
+   connect it with the LiveData Observable that returns the dogs list:
   ````kotlin
       override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -133,7 +121,8 @@ Use the sample code and documentation guide to learn the basics of how to displa
   ````
 
 ### Part 2: Dog details View:
-1. Implement an interface that will return wich Dog was clicked from the RecyclerView
+
+1. Implement an interface that will return which Dog was clicked from the RecyclerView
   ````kotlin
     interface DogBreedClickListener {
        fun onDogBreedClicked(breed: Breed)
@@ -188,8 +177,11 @@ Use the sample code and documentation guide to learn the basics of how to displa
 
     }  
   ````
-3. Make your *DogsListFragment* implment the *DogBreedClickListener* interface and store the selected breed into your shared ViewModel.
-4. Create a new fragment called *BreedDetailsFragment* that displays the breed information and the variants if any.
+
+3. Make your *DogsListFragment* implement the *DogBreedClickListener* interface and store the
+   selected breed into your shared ViewModel.
+4. Create a new fragment called *BreedDetailsFragment* that displays the breed information and the
+   variants if any.
 5. Navigate to the *BreedDetailsFragment* inside the click listener function.
 
 ### Advance Challenge: Improved Dog App
