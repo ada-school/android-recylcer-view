@@ -1,4 +1,4 @@
-<img align="right" src="https://github.com/ada-school/module-template/blob/main/ada.png">
+<img align="right" src="https://avatars.githubusercontent.com/u/61118853?s=200&v=4">
 
 
 ## Creating Lists on Android with RecyclerView
